@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Digital Signature Tool | Autographica - Your Digital Autograph, Anywhere. Free esign tool for drawing perfect signature in few seconds" />
+    <meta name="keywords" content="digital, autograph, signature, online, draw, save" />
+    <meta name="author" content="Autographica" />
+    <link rel="shortcut icon" href="https://img.icons8.com/ios/50/000000/pen.png" type="image/png">
+    <title>esign | autographica</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="loaderr"><h1>Leave Your Mark, Digitally..</h1>
+        <p>0</p>
+    </div>
+    <div id="main">
+        <header>
+            <h4>DRAW.SIGNATURE <i class="ri-sketching"></i></h4>
+            <nav>
+                <h4 id="tcc">tcc</h4>
+                <h4 id="link">Suggestions</h4>
+                <div id="loader">
+                    <svg class="pencil" viewBox="0 0 200 200" width="200px" height="200px"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <clipPath id="pencil-eraser">
+                                <rect rx="5" ry="5" width="30" height="30"></rect>
+                            </clipPath>
+                        </defs>
+                        <circle class="pencil__stroke" r="70" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-dasharray="439.82 439.82" stroke-dashoffset="439.82" stroke-linecap="round"
+                            transform="rotate(-113,100,100)"></circle>
+                        <g class="pencil__rotate" transform="translate(100,100)">
+                            <g fill="none">
+                                <circle class="pencil__body1" r="64" stroke="hsl(30, 30%, 50%)" stroke-width="30"
+                                    stroke-dasharray="402.12 402.12" stroke-dashoffset="402" transform="rotate(-90)">
+                                </circle>
+                                <circle class="pencil__body2" r="74" stroke="hsl(30, 30%, 60%)" stroke-width="10"
+                                    stroke-dasharray="464.96 464.96" stroke-dashoffset="465" transform="rotate(-90)">
+                                </circle>
+                                <circle class="pencil__body3" r="54" stroke="hsl(30, 30%, 40%)" stroke-width="10"
+                                    stroke-dasharray="339.29 339.29" stroke-dashoffset="339" transform="rotate(-90)">
+                                </circle>
+                            </g>
+                            <g class="pencil__eraser" transform="rotate(-90) translate(49,0)">
+                                <g class="pencil__eraser-skew">
+                                    <rect fill="hsl(30, 20%, 90%)" rx="5" ry="5" width="30" height="30"></rect>
+                                    <rect fill="hsl(30, 20%, 85%)" width="5" height="30"
+                                        clip-path="url(#pencil-eraser)"></rect>
+                                    <rect fill="hsl(30, 20%, 80%)" width="30" height="20"></rect>
+                                    <rect fill="hsl(30, 20%, 75%)" width="15" height="20"></rect>
+                                    <rect fill="hsl(30, 20%, 85%)" width="5" height="20"></rect>
+                                    <rect fill="hsla(30, 20%, 75%, 0.2)" y="6" width="30" height="2"></rect>
+                                    <rect fill="hsla(30, 20%, 75%, 0.2)" y="13" width="30" height="2"></rect>
+                                </g>
+                            </g>
+                            <g class="pencil__point" transform="rotate(-90) translate(49,-30)">
+                                <polygon fill="hsl(33,90%,70%)" points="15 0,30 30,0 30"></polygon>
+                                <polygon fill="hsl(33,90%,50%)" points="15 0,6 30,0 30"></polygon>
+                                <polygon fill="hsl(223,10%,10%)" points="15 0,20 10,10 10"></polygon>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+            </nav>
+        </header>
+
+        <div id="header-2">
+            <h1>AUTOGRAPHICA <span>Your Digital Autograph, Anywhere.</span></h1>
+            <div id="part-2">
+                <h4>Leave Your Mark</h4>
+                <h4>|</h4>
+                <h4>DIGITALLY ></h4>
+            </div>
+        </div>
+
+        <div id="line"></div>
+
+        <div id="controls">
+            <div class="control-group">
+                <h3>PEN COLOR <i class="ri-font-color"></i></h3>
+                <input type="color" id="text-color" />
+            </div>
+            <div class="control-group">
+                <h3>BG COLOUR <i class="ri-palette-line"></i></h3>
+                <input type="color" id="bg-color" />
+            </div>
+            <div class="control-group">
+                <h3>ANGLE <i class="ri-arrow-right-up-line"></i></h3>
+                <input type="range" id="angle"/>
+            </div>
+            <div class="control-group">
+                <h3>TEXT SIZE <i class="ri-font-size"></i></h3>
+                <select id="text-weight">
+                    <option value="lighter">Lighter</option>
+                    <option value="thin">Thin</option>
+                    <option value="medium-a">Medium-a</option>
+                    <option value="medium-n">Medium-n</option>
+                    <option value="bold">Bold</option>
+                    <option value="bolder">Bolder</option>
+                </select>
+            </div>
+        </div>
+        <div id="outer">
+            <canvas id="container"></canvas>
+        </div>
+
+        <div id="action-buttons">
+            <button type="button" class="button">
+                <span class="button__text">CLEAR <i class="ri-eraser-line"></i></span>
+                <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="512" viewBox="0 0 512 512"
+                        height="512" class="svg">
+                        <title></title>
+                        <path style="
+                  fill: none;
+                  stroke: #323232;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-width: 32px;
+                " d="M112,112l20,320c.95,18.49,14.4,32,32,32H348c17.67,0,30.87-13.51,32-32l20-320"></path>
+                        <line y2="112" y1="112" x2="432" x1="80" style="
+                  stroke: #323232;
+                  stroke-linecap: round;
+                  stroke-miterlimit: 10;
+                  stroke-width: 32px;
+                "></line>
+                        <path style="
+                  fill: none;
+                  stroke: #323232;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-width: 32px;
+                " d="M192,112V72h0a23.93,23.93,0,0,1,24-24h80a23.93,23.93,0,0,1,24,24h0v40"></path>
+                        <line y2="400" y1="176" x2="256" x1="256" style="
+                  fill: none;
+                  stroke: #323232;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-width: 32px;
+                "></line>
+                        <line y2="400" y1="176" x2="192" x1="184" style="
+                  fill: none;
+                  stroke: #323232;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-width: 32px;
+                "></line>
+                        <line y2="400" y1="176" x2="320" x1="328" style="
+                  fill: none;
+                  stroke: #323232;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-width: 32px;
+                "></line>
+                    </svg></span>
+            </button>
+            <button class="button button-save" type="button">
+                <span class="button__text">SAVE <i class="ri-quill-pen-line"></i></span>
+                <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35"
+                        id="bdd05811-e15d-428c-bb53-8661459f9307" data-name="Layer 2" class="svg">
+                        <path
+                            d="M17.5,22.131a1.249,1.249,0,0,1-1.25-1.25V2.187a1.25,1.25,0,0,1,2.5,0V20.881A1.25,1.25,0,0,1,17.5,22.131Z">
+                        </path>
+                        <path
+                            d="M17.5,22.693a3.189,3.189,0,0,1-2.262-.936L8.487,15.006a1.249,1.249,0,0,1,1.767-1.767l6.751,6.751a.7.7,0,0,0,.99,0l6.751-6.751a1.25,1.25,0,0,1,1.768,1.767l-6.752,6.751A3.191,3.191,0,0,1,17.5,22.693Z">
+                        </path>
+                        <path
+                            d="M31.436,34.063H3.564A3.318,3.318,0,0,1,.25,30.749V22.011a1.25,1.25,0,0,1,2.5,0v8.738a.815.815,0,0,0,.814.814H31.436a.815.815,0,0,0,.814-.814V22.011a1.25,1.25,0,1,1,2.5,0v8.738A3.318,3.318,0,0,1,31.436,34.063Z">
+                        </path>
+                    </svg></span>
+            </button>
+        </div>
+
+        <div id="bl"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+        integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="script.js" defer></script>
+</body>
+
+</html>

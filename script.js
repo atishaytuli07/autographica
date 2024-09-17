@@ -59,18 +59,27 @@ window.onload = function () {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
+    function getPointFromEvent(e) {
+        const rect = canvas.getBoundingClientRect();
+        const x = (e.clientX || e.touches[0].clientX) - rect.left;
+        const y = (e.clientY || e.touches[0].clientY) - rect.top;
+        return { x, y };
+    }
+
     function startDrawing(e) {
+        e.preventDefault();
         drawing = true;
         currentPath = [];
-        const point = { x: e.offsetX, y: e.offsetY };
+        const point = getPointFromEvent(e);
         currentPath.push(point);
         ctx.beginPath();
         ctx.moveTo(point.x, point.y);
     }
 
     function draw(e) {
+        e.preventDefault();
         if (!drawing) return;
-        const point = { x: e.offsetX, y: e.offsetY };
+        const point = getPointFromEvent(e);
         currentPath.push(point);
         ctx.lineTo(point.x, point.y);
         ctx.stroke();
@@ -88,6 +97,11 @@ window.onload = function () {
     canvas.addEventListener('mousemove', draw);
     canvas.addEventListener('mouseup', stopDrawing);
     canvas.addEventListener('mouseleave', stopDrawing);
+
+    canvas.addEventListener('touchstart', startDrawing);
+    canvas.addEventListener('touchmove', draw);
+    canvas.addEventListener('touchend', stopDrawing);
+    canvas.addEventListener('touchcancel', stopDrawing);
 
     document.getElementById('text-color').addEventListener('change', function () {
         ctx.strokeStyle = this.value;

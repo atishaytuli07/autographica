@@ -757,13 +757,22 @@
   .control-group input {
     margin-top: 4px;
     width: 125px;
-    height: 9px;
+    height: 14px;
     border: none;
     border-radius: 7px;
     font-family: "Re", sans-serif;
     -webkit-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    overflow: hidden;
+  }
+  
+  .control-group input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 50px;
   }
   
   .control-group select {
@@ -785,7 +794,7 @@
   .control-group input:hover,
   .control-group select:hover {
     width: 130px;
-    background-color: #4d4b4b;
+    background-color: none;
     -webkit-transform: scale(1.05);
     -ms-transform: scale(1.05);
     transform: scale(1.05);
@@ -825,8 +834,8 @@
   }
   
   input[type="range"]::-moz-range-thumb {
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     background: #fff;
     cursor: pointer;
     border-radius: 50%;
@@ -1090,13 +1099,22 @@
     i {
       font-size: 15px;
     }
+
+    .control-group input {
+      height: 12px;
+      border-radius: 50px;
+    }
   
     input[type="range"] {
       background: black;
+      height: 7px;
     }
   
     .control-group select {
       font-size: 10px;
     }
+
+
+
   }
   

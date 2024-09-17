@@ -947,12 +947,12 @@
   
     #container {
       width: 100%;
-      height: 59vh;
+      height: 57vh;
       border: 0.5px solid #333;
     }
   
     #action-buttons {
-      margin: 2%;
+      margin: 1%;
       gap: 30px;
     }
   
@@ -1081,12 +1081,12 @@
   
     #container {
       width: 100%;
-      height: 55vh;
+      height: 56vh;
       border: 0.5px solid #333;
     }
   
     #action-buttons {
-      margin: 4%;
+      margin: 1%;
       gap: 30px;
     }
   

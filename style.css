@@ -757,7 +757,8 @@
   .control-group input {
     margin-top: 4px;
     width: 125px;
-    height: 14px;
+    height: 7px;
+    background-color: #323232;
     border: none;
     border-radius: 7px;
     font-family: "Re", sans-serif;
@@ -984,6 +985,17 @@
     .control-group select {
       font-size: 10px;
     }
+
+    .button .button__icon {
+      right: 0;
+      -webkit-transform: translateX(100%);
+      -ms-transform: translateX(100%);
+      transform: translateX(100%);
+    }
+    
+    .button:hover .button__icon {
+      width: 100%;
+    }
   }
   
   @media (max-width: 768px) {
@@ -1101,8 +1113,9 @@
     }
 
     .control-group input {
-      height: 12px;
+      height: 5px;
       border-radius: 50px;
+      background-color: #323232;
     }
   
     input[type="range"] {
@@ -1114,7 +1127,17 @@
       font-size: 10px;
     }
 
-
+    .button .button__icon {
+      right: 0;
+      -webkit-transform: translateX(100%);
+      -ms-transform: translateX(100%);
+      transform: translateX(100%);
+    }
+    
+    .button:hover .button__icon {
+      width: 100%;
+    }
+    
 
   }
   

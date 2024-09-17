@@ -2,6 +2,8 @@ window.onload = function () {
     const canvas = document.getElementById('container');
     const ctx = canvas.getContext('2d');
     let drawing = false;
+    let paths = [];
+    let currentPath = [];
 
     document.getElementById('text-weight').addEventListener('change', function () {
         const selectedValue = this.value;
@@ -30,6 +32,7 @@ window.onload = function () {
                 lineWidth = 3;
         }
         ctx.lineWidth = lineWidth;
+        redrawCanvas();
     });
 
     function resetSettings() {
@@ -49,6 +52,7 @@ window.onload = function () {
 
         ctx.strokeStyle = document.getElementById('text-color').value || '#000000';
         ctx.lineCap = 'round';
+        redrawCanvas();
     }
 
     resetSettings();
@@ -57,23 +61,27 @@ window.onload = function () {
 
     function startDrawing(e) {
         drawing = true;
+        currentPath = [];
+        const point = { x: e.offsetX, y: e.offsetY };
+        currentPath.push(point);
         ctx.beginPath();
-        ctx.moveTo(e.offsetX, e.offsetY);
+        ctx.moveTo(point.x, point.y);
     }
 
     function draw(e) {
         if (!drawing) return;
-        ctx.save();
-
-        ctx.lineTo(e.offsetX, e.offsetY);
+        const point = { x: e.offsetX, y: e.offsetY };
+        currentPath.push(point);
+        ctx.lineTo(point.x, point.y);
         ctx.stroke();
-
-        ctx.restore();
     }
 
     function stopDrawing() {
-        drawing = false;
-        ctx.closePath();
+        if (drawing) {
+            drawing = false;
+            paths.push(currentPath);
+            ctx.closePath();
+        }
     }
 
     canvas.addEventListener('mousedown', startDrawing);
@@ -83,6 +91,7 @@ window.onload = function () {
 
     document.getElementById('text-color').addEventListener('change', function () {
         ctx.strokeStyle = this.value;
+        redrawCanvas();
     });
 
     document.getElementById('bg-color').addEventListener('change', function () {
@@ -91,11 +100,13 @@ window.onload = function () {
 
     document.getElementById('text-weight').addEventListener('change', function () {
         ctx.lineWidth = parseInt(this.value, 10);
+        redrawCanvas();
     });
 
     document.querySelector('.button').addEventListener('click', function () {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         canvas.style.backgroundColor = '';
+        paths = [];
     });
 
     const loader = document.getElementById('loaderr');
@@ -120,21 +131,57 @@ window.onload = function () {
 
     gsap.fromTo("#loaderr h1", { x: -220, opacity: 0 }, { x: 0, opacity: 1, duration: 1, ease: "power2.out" });
     gsap.fromTo("#loaderr p", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power2.out", delay: 0.5 });
+
+    document.querySelector("#tcc").addEventListener("click", function () {
+        window.open("https://atishaytuli07.github.io/textcaseconvertor/", "_blank");
+    });
+
+    document.querySelector("#link").addEventListener("click", function () {
+        window.open("https://www.linkedin.com/in/atishaytuli07", "_blank");
+    });
+
+    document.querySelector('#save-button').addEventListener('click', function () {
+        const dataURL = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.href = dataURL;
+        link.download = 'signature.png';
+        link.click();
+    });
+
+    function rotateSignature(angle) {
+        document.getElementById('angle').value = angle;
+        ctx.save();
+        ctx.translate(canvas.width / 2, canvas.height / 2);
+        ctx.rotate(angle * Math.PI / 180);
+        ctx.translate(-canvas.width / 2, -canvas.height / 2);
+        redrawCanvas();
+        ctx.restore();
+    }
+
+    function redrawCanvas() {
+        const angle = parseInt(document.getElementById('angle').value);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.save();
+        ctx.translate(canvas.width / 2, canvas.height / 2);
+        ctx.rotate(angle * Math.PI / 180);
+        ctx.translate(-canvas.width / 2, -canvas.height / 2);
+
+        paths.forEach(path => {
+            ctx.beginPath();
+            path.forEach((point, index) => {
+                if (index === 0) {
+                    ctx.moveTo(point.x, point.y);
+                } else {
+                    ctx.lineTo(point.x, point.y);
+                }
+            });
+            ctx.stroke();
+        });
+
+        ctx.restore();
+    }
+
+    document.getElementById('angle').addEventListener('input', function() {
+        rotateSignature(this.value);
+    });
 };
-
-
-document.querySelector("#tcc").addEventListener("click", function () {
-    window.open("https://www.linkedin.com/in/atishaytuli07", "_blank");
-});
-
-document.querySelector("#link").addEventListener("click", function () {
-    window.open("https://atishaytuli07.github.io/textcaseconvertor/", "_blank");
-});
-
-document.querySelector('#button-save').addEventListener('click', function () {
-    const dataURL = canvas.toDataURL('image/png');
-    const link = document.createElement('a');
-    link.href = dataURL;
-    link.download = 'signature.png';
-    link.click();
-});

@@ -76,6 +76,10 @@
     gap: 30px;
   }
   
+  nav h4 {
+    cursor: pointer;
+  }
+  
   #header-2 {
     padding: 30px;
     width: 100%;

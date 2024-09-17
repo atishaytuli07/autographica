@@ -10,11 +10,14 @@
     <link rel="shortcut icon" href="https://img.icons8.com/ios/50/000000/pen.png" type="image/png">
     <title>esign | autographica</title>
     <link rel="stylesheet" href="style.css" />
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+    <script src="script.js" defer></script>
 </head>
 
 <body>
-    <div id="loaderr"><h1>Leave Your Mark, Digitally..</h1>
+    <div id="loaderr">
+        <h1>Leave Your Mark, Digitally..</h1>
         <p>0</p>
     </div>
     <div id="main">
@@ -24,33 +27,23 @@
                 <h4 id="tcc">tcc</h4>
                 <h4 id="link">Suggestions</h4>
                 <div id="loader">
-                    <svg class="pencil" viewBox="0 0 200 200" width="200px" height="200px"
-                        xmlns="http://www.w3.org/2000/svg">
+                    <svg class="pencil" viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <defs>
                             <clipPath id="pencil-eraser">
                                 <rect rx="5" ry="5" width="30" height="30"></rect>
                             </clipPath>
                         </defs>
-                        <circle class="pencil__stroke" r="70" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-dasharray="439.82 439.82" stroke-dashoffset="439.82" stroke-linecap="round"
-                            transform="rotate(-113,100,100)"></circle>
+                        <circle class="pencil__stroke" r="70" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="439.82 439.82" stroke-dashoffset="439.82" stroke-linecap="round" transform="rotate(-113,100,100)"></circle>
                         <g class="pencil__rotate" transform="translate(100,100)">
                             <g fill="none">
-                                <circle class="pencil__body1" r="64" stroke="hsl(30, 30%, 50%)" stroke-width="30"
-                                    stroke-dasharray="402.12 402.12" stroke-dashoffset="402" transform="rotate(-90)">
-                                </circle>
-                                <circle class="pencil__body2" r="74" stroke="hsl(30, 30%, 60%)" stroke-width="10"
-                                    stroke-dasharray="464.96 464.96" stroke-dashoffset="465" transform="rotate(-90)">
-                                </circle>
-                                <circle class="pencil__body3" r="54" stroke="hsl(30, 30%, 40%)" stroke-width="10"
-                                    stroke-dasharray="339.29 339.29" stroke-dashoffset="339" transform="rotate(-90)">
-                                </circle>
+                                <circle class="pencil__body1" r="64" stroke="hsl(30, 30%, 50%)" stroke-width="30" stroke-dasharray="402.12 402.12" stroke-dashoffset="402" transform="rotate(-90)"></circle>
+                                <circle class="pencil__body2" r="74" stroke="hsl(30, 30%, 60%)" stroke-width="10" stroke-dasharray="464.96 464.96" stroke-dashoffset="465" transform="rotate(-90)"></circle>
+                                <circle class="pencil__body3" r="54" stroke="hsl(30, 30%, 40%)" stroke-width="10" stroke-dasharray="339.29 339.29" stroke-dashoffset="339" transform="rotate(-90)"></circle>
                             </g>
                             <g class="pencil__eraser" transform="rotate(-90) translate(49,0)">
                                 <g class="pencil__eraser-skew">
                                     <rect fill="hsl(30, 20%, 90%)" rx="5" ry="5" width="30" height="30"></rect>
-                                    <rect fill="hsl(30, 20%, 85%)" width="5" height="30"
-                                        clip-path="url(#pencil-eraser)"></rect>
+                                    <rect fill="hsl(30, 20%, 85%)" width="5" height="30" clip-path="url(#pencil-eraser)"></rect>
                                     <rect fill="hsl(30, 20%, 80%)" width="30" height="20"></rect>
                                     <rect fill="hsl(30, 20%, 75%)" width="15" height="20"></rect>
                                     <rect fill="hsl(30, 20%, 85%)" width="5" height="20"></rect>
@@ -83,19 +76,19 @@
         <div id="controls">
             <div class="control-group">
                 <h3>PEN COLOR <i class="ri-font-color"></i></h3>
-                <input type="color" id="text-color" />
+                <input type="color" id="text-color" aria-label="Select pen color" />
             </div>
             <div class="control-group">
                 <h3>BG COLOUR <i class="ri-palette-line"></i></h3>
-                <input type="color" id="bg-color" />
+                <input type="color" id="bg-color" aria-label="Select background color" />
             </div>
             <div class="control-group">
                 <h3>ANGLE <i class="ri-arrow-right-up-line"></i></h3>
-                <input type="range" id="angle"/>
+                <input type="range" id="angle" min="0" max="360" value="0" oninput="rotateSignature(this.value)" aria-label="Adjust signature angle" />
             </div>
             <div class="control-group">
                 <h3>TEXT SIZE <i class="ri-font-size"></i></h3>
-                <select id="text-weight">
+                <select id="text-weight" aria-label="Select text size">
                     <option value="lighter">Lighter</option>
                     <option value="thin">Thin</option>
                     <option value="medium-a">Medium-a</option>
@@ -110,7 +103,7 @@
         </div>
 
         <div id="action-buttons">
-            <button type="button" class="button">
+            <button type="button" class="button" id="clear-button" aria-label="Clear signature">
                 <span class="button__text">CLEAR <i class="ri-eraser-line"></i></span>
                 <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="512" viewBox="0 0 512 512"
                         height="512" class="svg">
@@ -158,7 +151,7 @@
                 "></line>
                     </svg></span>
             </button>
-            <button class="button button-save" type="button">
+            <button class="button button-save" type="button" id="save-button" aria-label="Save signature">
                 <span class="button__text">SAVE <i class="ri-quill-pen-line"></i></span>
                 <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35"
                         id="bdd05811-e15d-428c-bb53-8661459f9307" data-name="Layer 2" class="svg">
